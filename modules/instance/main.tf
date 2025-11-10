@@ -9,6 +9,6 @@ resource "aws_instance" "instance" {
               systemctl start nginx
               EOF
   tags = {
-    Name = "webhook-instance"
+    Name = "github-action-instance"
   }
 }
