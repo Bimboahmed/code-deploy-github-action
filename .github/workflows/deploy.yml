@@ -10,31 +10,27 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-         - name: Checkout
-           uses: actions/checkout@v6-beta
+         - name: Checkout the code
+           uses: actions/checkout@v5.0.0
 
          - name: Configure AWS Credentials
            uses: aws-actions/configure-aws-credentials@v5.1.0
            with:
-            aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}}
+            aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
             aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
             aws-region: us-east-1
 
-         - name: HashiCorp - Setup Terraform
+         - name: HashiCorp - Setup Terraform  
            uses: hashicorp/setup-terraform@v2.0.3
 
-         - name: initialise Terraform
-           uses: terraform init
+         - name: initialise terraform
+           run: terraform init
 
-         - name: validate Terraform
-           uses: terraform validate
+         - name: validate terraform code
+           run: terraform validate
 
-         - name: check Terraform code format
-           uses: terraform fmt
+         - name: plan terraform
+           run: terraform plan
 
-         - name: plan Terraform
-           uses: terraform plan
-
-           - name: deploy terraform to aws
-           uses: terraform apply --auto-approve
-    
+         - name: deploy terraform to aws
+           run: terraform apply --auto-approve
