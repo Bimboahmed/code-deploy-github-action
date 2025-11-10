@@ -31,7 +31,7 @@ jobs:
 
          - name: check Terraform code format
            uses: terraform fmt
-
+           
          - name: plan Terraform
            uses: terraform plan
 
